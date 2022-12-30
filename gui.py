@@ -16,11 +16,15 @@ quit_button = Gui.Button(button_text="Quit",
 edit_button = Gui.Button(button_text='Edit',
                          font='bold',
                          button_color="black")
+complete_button = Gui.Button(button_text="Complete",
+                             font='bold',
+                             button_color="black"
+                             )
 list_box = Gui.Listbox(values=functions.get_todos(),
                        key='todos', enable_events=True,
                        size=[45, 10], background_color='light grey')
 
-window_layout = [[label], [input_box, add_button], [list_box, edit_button], [quit_button]]
+window_layout = [[label], [input_box, add_button], [list_box, [edit_button, complete_button]], [quit_button]]
 
 window = Gui.Window(background_color='grey',
                     title='My To-Do App',
@@ -49,6 +53,14 @@ while True:
             index = todos.index(todo_to_edit)
             todos[index] = new_todo + '\n'
             functions.write_todos(todos)
+            window['todos'].update(values=todos)
+
+        case 'Complete':
+            todo_to_complete = values['todos'][0]
+            todos = functions.get_todos()
+            index = todos.index(todo_to_complete)
+            removed_todo = todos.pop(index).strip('\n')
+            functions.write_todos(todos_arg=todos)
             window['todos'].update(values=todos)
 
         case 'todos':
