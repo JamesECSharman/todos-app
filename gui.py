@@ -58,4 +58,7 @@ while True:
         case Gui.WIN_CLOSED:
             break
 
+        case 'Quit':
+            break
+
 window.close()
