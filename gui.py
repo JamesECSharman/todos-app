@@ -20,14 +20,13 @@ list_box = Gui.Listbox(values=functions.get_todos(),
                        key='todos', enable_events=True,
                        size=[45, 10], background_color='light grey')
 
+window_layout = [[label], [input_box, add_button], [list_box, edit_button], [quit_button]]
+
 window = Gui.Window(background_color='grey',
                     title='My To-Do App',
                     sbar_trough_color='black',
                     sbar_background_color='Dark Grey',
-                    layout=[[label],
-                            [input_box, add_button],
-                            [list_box, edit_button],
-                            [quit_button]],
+                    layout=window_layout,
                     font=('Verdana', 15))
 
 while True:
