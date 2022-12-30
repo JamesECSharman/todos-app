@@ -103,3 +103,14 @@ while True:
 
     else:
         print("Error: user prompt not recognised, please enter a valid input")
+
+case "Edit":
+    try:
+        todo_to_edit = values['todos'][0]
+        new_todo = values['todo']
+
+        todos = functions.get_todos()
+        index = todos.index(todo_to_edit)
+        todos[index] = new_todo
+        functions.write_todos(todos)
+        window['todos'].update(values=todos)
