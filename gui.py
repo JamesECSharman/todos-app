@@ -6,7 +6,7 @@ label = Gui.Text(text="Type in a to-do: ",
                  text_color='white',
                  background_color='grey')
 input_box = Gui.InputText(tooltip="Enter a to-do", size=(46, 0),
-                          key="todo", border_width=2, background_color='light grey')
+                          key="todo", border_width=2, background_color='light grey', do_not_clear=True)
 add_button = Gui.Button(button_text="Add",
                         font='bold',
                         size=(8, 0),
@@ -63,6 +63,7 @@ while True:
             todos.append(new_todo)
             functions.write_todos(todos)
             window['todos'].update(values=todos)
+            window['todo']('')
 
         case 'Edit':
             todo_to_edit = values['todos'][0]
@@ -74,6 +75,7 @@ while True:
             todos[index] = new_todo + '\n'
             functions.write_todos(todos)
             window['todos'].update(values=todos)
+            window['todo']('')
 
         case 'Complete':
             todo_to_complete = values['todos'][0]
@@ -82,6 +84,7 @@ while True:
             removed_todo = todos.pop(index).strip('\n')
             functions.write_todos(todos_arg=todos)
             window['todos'].update(values=todos)
+            window['todo']('')
 
         case 'Clear':
             todos = functions.get_todos()
