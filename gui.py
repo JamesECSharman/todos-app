@@ -50,6 +50,7 @@ while True:
         case "Add":
             todos = functions.get_todos()
             new_todo = values['todo'] + '\n'
+            new_todo = new_todo.title()
             todos.append(new_todo)
             functions.write_todos(todos)
             window['todos'].update(values=todos)
@@ -57,6 +58,7 @@ while True:
         case 'Edit':
             todo_to_edit = values['todos'][0]
             new_todo = values['todo']
+            new_todo = new_todo.title()
 
             todos = functions.get_todos()
             index = todos.index(todo_to_edit)
