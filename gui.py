@@ -31,7 +31,7 @@ clear_button = Gui.Button(button_text="Clear",
                           )
 list_box = Gui.Listbox(values=functions.get_todos(),
                        key='todos', enable_events=True,
-                       size=[45, 10], background_color='light grey')
+                       size=(45, 10), background_color='light grey')
 white_space_1 = Gui.Text(text="", size=(0, 3), background_color='grey')
 white_space_2 = Gui.Text(text="", size=(0, 0), background_color='grey')
 white_space_3 = Gui.Text(text="", size=(0, 0), background_color='grey')
