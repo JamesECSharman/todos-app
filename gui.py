@@ -2,48 +2,57 @@ from modules import functions
 import PySimpleGUI as Gui
 
 label = Gui.Text(text="Type in a to-do: ",
-                 font=('Verdana', 15),
+                 font=('Verdana', 14),
                  text_color='white',
                  background_color='grey')
 input_box = Gui.InputText(tooltip="Enter a to-do", size=(46, 0),
-                          key="todo")
+                          key="todo", border_width=2, background_color='light grey')
 add_button = Gui.Button(button_text="Add",
                         font='bold',
-                        button_color="black")
+                        size=(8, 0),
+                        button_color='black', mouseover_colors='dark green')
 quit_button = Gui.Button(button_text="Quit",
+                        size=(8, 0),
                          font='bold',
-                         button_color="black")
+                         button_color="black", mouseover_colors='dark green')
 edit_button = Gui.Button(button_text='Edit',
+                         size=(8, 0),
                          font='bold',
-                         button_color="black")
+                         button_color="black", mouseover_colors='dark green')
 complete_button = Gui.Button(button_text="Complete",
+                             size=(8, 0),
                              font='bold',
-                             button_color="black"
+                             button_color="black", mouseover_colors='dark green'
                              )
 clear_button = Gui.Button(button_text="Clear",
+                          size=(8, 0),
                           font='bold',
-                          button_color="black"
+                          button_color="black", mouseover_colors='dark green'
                           )
 list_box = Gui.Listbox(values=functions.get_todos(),
                        key='todos', enable_events=True,
                        size=[45, 10], background_color='light grey')
-white_space = Gui.Text(text="", size=(0, 3), background_color='grey')
+white_space_1 = Gui.Text(text="", size=(0, 3), background_color='grey')
+white_space_2 = Gui.Text(text="", size=(0, 0), background_color='grey')
+white_space_3 = Gui.Text(text="", size=(0, 0), background_color='grey')
 
-window_column_1 = [[label], [input_box], [list_box]]
-window_column_2 = [[add_button], [edit_button], [complete_button], [clear_button], [white_space], [quit_button]]
+window_column_1 = [[label], [input_box], [white_space_2], [list_box]]
+window_column_2 = [[add_button], [white_space_3], [edit_button], [complete_button], [clear_button], [white_space_1], [quit_button]]
 
 layout = [[Gui.Column(window_column_1, element_justification='l', background_color='grey'),
-           Gui.Column(window_column_2, element_justification='l', vertical_alignment='bottom', background_color='grey')]]
+           Gui.Column(window_column_2, element_justification='l', vertical_alignment='bottom',
+                      background_color='grey')]]
 
 window = Gui.Window(background_color='grey',
                     title='My To-Do App',
+                    margins=(5, 5),
                     sbar_trough_color='black',
                     sbar_background_color='Dark Grey',
                     layout=layout,
                     font=('Verdana', 15))
 
 while True:
-    event,values = window.read()
+    event, values = window.read()
     print(event)
     print(values)
     match event:
