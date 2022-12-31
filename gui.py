@@ -91,25 +91,33 @@ while True:
             window['todo']('')
 
         case 'Edit':
-            todo_to_edit = values['todos'][0]
-            new_todo = values['todo']
-            new_todo = new_todo.title()
+            try:
+                todo_to_edit = values['todos'][0]
+                new_todo = values['todo']
+                new_todo = new_todo.title()
 
-            todos = functions.get_todos()
-            index = todos.index(todo_to_edit)
-            todos[index] = new_todo + '\n'
-            functions.write_todos(todos)
-            window['todos'].update(values=todos)
-            window['todo']('')
+                todos = functions.get_todos()
+                index = todos.index(todo_to_edit)
+                todos[index] = new_todo + '\n'
+                functions.write_todos(todos)
+                window['todos'].update(values=todos)
+                window['todo']('')
+            except IndexError:
+                Gui.popup("Please select an item first", font=fonts, background_color='grey',
+                          button_color=('white', 'black'))
 
         case 'Complete':
-            todo_to_complete = values['todos'][0]
-            todos = functions.get_todos()
-            index = todos.index(todo_to_complete)
-            removed_todo = todos.pop(index).strip('\n')
-            functions.write_todos(todos_arg=todos)
-            window['todos'].update(values=todos)
-            window['todo']('')
+            try:
+                todo_to_complete = values['todos'][0]
+                todos = functions.get_todos()
+                index = todos.index(todo_to_complete)
+                removed_todo = todos.pop(index).strip('\n')
+                functions.write_todos(todos_arg=todos)
+                window['todos'].update(values=todos)
+                window['todo']('')
+            except IndexError:
+                Gui.popup("Please select an item first", font=fonts, background_color='grey',
+                          button_color=('white', 'black'))
 
         case 'Clear':
             todos = functions.get_todos()
