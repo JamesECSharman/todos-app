@@ -1,7 +1,8 @@
-# from Functions import get_todos, write_todos
+# from Functions import get_todos, write_todos. Time function used to display the time to user
 from modules import functions
 import time
 
+# time function printed for the user in CLI
 now = time.strftime("%d %b, %y, %H:%M:%S")
 print("It is ", now)
 
@@ -29,16 +30,32 @@ while True:
             print("You need to add a todo.")
 
     elif user_action.startswith('edit'):
+        todos = functions.get_todos()
+        number = user_action[5:]
+
         try:
-            todos = functions.get_todos()
-            number = int(user_action[5:])
-            number = number - 1
-            new_todo = input("Enter new todo: ")
-            todos[number] = new_todo + '\n'
+            val = int(number)
+            val = val - 1
+            new_todo = input("Enter new todo: ").lower().strip() + "\n"
+            todos[val] = new_todo
             functions.write_todos(todos_arg=todos)
 
-        except (ValueError, IndexError) as error:
-            print("Unknown Command")
+        except ValueError:
+            try:
+                float(number)
+                print("We can only accept numbers with no decimal places")
+
+            except ValueError:
+                keyword = [line.rstrip('\n').capitalize() for line in todos]
+                if number in keyword:
+                    edit = input("Enter a new todo: ").lower().strip() + "\n"
+                    mylist = keyword.index(number)
+                    todos[mylist] = edit
+                    functions.write_todos(todos_arg=todos)
+        except IndexError:
+            print("Unknown To-Do, please ensure you enter a correct To-Do number.")
+            continue
+        else:
             continue
 
     elif user_action.startswith('complete'):
