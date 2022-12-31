@@ -16,6 +16,13 @@ time_display = Gui.Text('', size=(20, 1),
 input_box = Gui.InputText(tooltip="Enter a to-do", size=(46, 0),
                           key="todo", border_width=2, background_color='light grey', do_not_clear=True)
 
+# The below add button utilises an image instead of text.
+"""add_button = Gui.Button(image_source="images/WhiteAdd.png",
+                        size=8,
+                        tooltip="Add To-Do",
+                        key='Add', image_subsample=38,
+                        button_color='black', mouseover_colors='dark green')"""
+
 add_button = Gui.Button(button_text="Add",
                         font='bold',
                         size=(8, 0),
@@ -26,10 +33,26 @@ quit_button = Gui.Button(button_text="Quit",
                          font='bold',
                          button_color="black", mouseover_colors='dark green')
 
+# The below quit button utilises an image instead of text.
+"""quit_button = Gui.Button(image_source='images/power_button.png',
+                         tooltip="Close Application", image_subsample=50,
+                         size=(8, 0),
+                         key="Quit",
+                         font='bold',
+                         button_color="black", mouseover_colors='dark green')"""
+
 edit_button = Gui.Button(button_text='Edit',
                          size=(8, 0),
                          font='bold',
                          button_color="black", mouseover_colors='dark green')
+
+# The below complete button utilises an image instead of text.
+"""complete_button = Gui.Button(image_source="images/whitecheck.png",
+                             key="Complete",
+                             tooltip="Complete To-Do", image_subsample=60,
+                             size=(8, 0),
+                             font='bold',
+                             button_color="black", mouseover_colors='dark green')"""
 
 complete_button = Gui.Button(button_text="Complete",
                              size=(8, 0),
