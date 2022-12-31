@@ -71,14 +71,10 @@ window = Gui.Window(background_color='grey',
                     finalize=True,
                     font=('Verdana', 15))
 
-window['time_text'].update(time.strftime('%d %b %H:%M:%S'))
-
 """While true loop to capture user input, update todos etc."""
 while True:
-    event, values = window.read(timeout=10)
+    event, values = window.read(timeout=200)
     window['time_text'].update(time.strftime('%d %b %H:%M:%S'))
-    print(event)
-    print(values)
     match event:
         case "Add":
             # worth looking into keyboard events and adding an enter function
