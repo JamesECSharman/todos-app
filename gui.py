@@ -1,11 +1,17 @@
 from modules import functions
 import PySimpleGUI as Gui
+import time
+
+fonts = ('Verdana', 14)
 
 """Various elements for the app - buttons, text and input fields"""
 label = Gui.Text(text="Type in a to-do: ",
                  font=('Verdana', 14),
                  text_color='white',
                  background_color='grey')
+
+time_display = Gui.Text('', size=(20, 2),
+                        justification='center', font=fonts, key='time_text')
 
 input_box = Gui.InputText(tooltip="Enter a to-do", size=(46, 0),
                           key="todo", border_width=2, background_color='light grey', do_not_clear=True)
@@ -46,7 +52,7 @@ white_space_2 = Gui.Text(text="", size=(0, 0), background_color='grey')
 white_space_3 = Gui.Text(text="", size=(0, 0), background_color='grey')
 
 """Columns used for the overall layout and design"""
-window_column_1 = [[label], [input_box], [white_space_2], [list_box]]
+window_column_1 = [[time_display], [label], [input_box], [white_space_2], [list_box]]
 window_column_2 = [[add_button], [white_space_3], [edit_button], [complete_button], [clear_button], [white_space_1],
                    [quit_button]]
 
@@ -62,11 +68,15 @@ window = Gui.Window(background_color='grey',
                     sbar_trough_color='black',
                     sbar_background_color='Dark Grey',
                     layout=layout,
+                    finalize=True,
                     font=('Verdana', 15))
+
+window['time_text'].update(time.strftime('%H:%M:%S'))
 
 """While true loop to capture user input, update todos etc."""
 while True:
-    event, values = window.read()
+    event, values = window.read(timeout=10)
+    window['time_text'].update(time.strftime('%H:%M:%S'))
     print(event)
     print(values)
     match event:
