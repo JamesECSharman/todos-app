@@ -1,5 +1,5 @@
 # from Functions import get_todos, write_todos. Time function used to display the time to user
-from modules import functions
+import functions
 import time
 
 # time function printed for the user in CLI
