@@ -17,4 +17,5 @@ def write_todos(todos_arg, filepath=FILEPATH):
 
 
 if __name__ == "__main__":
+    """This is to allow for function testing outside of app code"""
     print(get_todos(filepath='../files/todos.txt'))
