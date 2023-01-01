@@ -10,13 +10,13 @@ if not os.path.exists("todos.txt"):
 fonts = ('Verdana', 14)
 
 """Various elements for the app - buttons, text and input fields"""
-label = Gui.Text(text="Type in a to-do: ",
-                 font=('Verdana', 14),
+label = Gui.Text(text="Type in a to-do: ", pad=((5, 5), (5, 5)),
+                 font=('Verdana', 14, ['bold']),
                  text_color='white',
                  background_color='grey')
 
-time_display = Gui.Text('', size=(20, 1),
-                        justification='left', font=fonts, key='time_text', background_color='grey')
+time_display = Gui.Text('', size=(20, 1), font=('Verdana', 14, ['bold']),
+                        pad=((5, 5), (5, 15)), key='time_text', background_color='grey')
 
 input_box = Gui.InputText(tooltip="Enter a to-do", size=(46, 0),
                           key="todo", border_width=2, background_color='light grey', do_not_clear=True)
@@ -99,10 +99,13 @@ window = Gui.Window(background_color='grey',
                     finalize=True,
                     font=('Verdana', 15), return_keyboard_events=True)
 
-"""While true loop to capture user input, update todos etc."""
+# Set time text on window load
+window['time_text'].update(time.strftime('%d %b %H:%M'))
+
+"""While true loop to capture user input, update todos, update clock etc."""
 while True:
-    event, values = window.read(timeout=200)
-    window['time_text'].update(time.strftime('%d %b %H:%M:%S'))
+    event, values = window.read(timeout=1000)
+    window['time_text'].update(time.strftime('%d %b %H:%M'))
     match event:
         case "Add":
             # need to look into an error for empty value
