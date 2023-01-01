@@ -97,15 +97,26 @@ window = Gui.Window(background_color='grey',
                     sbar_background_color='Dark Grey',
                     layout=layout,
                     finalize=True,
-                    font=('Verdana', 15))
+                    font=('Verdana', 15), return_keyboard_events=True)
 
 """While true loop to capture user input, update todos etc."""
 while True:
     event, values = window.read(timeout=200)
+    print(event, values)
     window['time_text'].update(time.strftime('%d %b %H:%M:%S'))
     match event:
         case "Add":
             # worth looking into keyboard events and adding an enter function
+            todos = functions.get_todos()
+            new_todo = values['todo'] + '\n'
+            new_todo = new_todo.title()
+            todos.append(new_todo)
+            functions.write_todos(todos)
+            window['todos'].update(values=todos)
+            window['todo']('')
+
+        case "Return:603979789":
+            # keyboard event - if enter is hit, the to do is added
             todos = functions.get_todos()
             new_todo = values['todo'] + '\n'
             new_todo = new_todo.title()
@@ -156,6 +167,9 @@ while True:
             break
 
         case 'Quit':
+            break
+
+        case 'Escape:889192475':
             break
 
 window.close()
