@@ -102,11 +102,10 @@ window = Gui.Window(background_color='grey',
 """While true loop to capture user input, update todos etc."""
 while True:
     event, values = window.read(timeout=200)
-    print(event, values)
     window['time_text'].update(time.strftime('%d %b %H:%M:%S'))
     match event:
         case "Add":
-            # worth looking into keyboard events and adding an enter function
+            # need to look into an error for empty value
             todos = functions.get_todos()
             new_todo = values['todo'] + '\n'
             new_todo = new_todo.title()
@@ -170,6 +169,7 @@ while True:
             break
 
         case 'Escape:889192475':
+            # Keyboard event esc quits the application
             break
 
 window.close()
