@@ -19,7 +19,8 @@ time_display = Gui.Text('', size=(20, 1), font=('Verdana', 14, ['bold']),
                         pad=((5, 5), (5, 15)), key='time_text', background_color='grey')
 
 input_box = Gui.InputText(tooltip="Enter a to-do", size=(46, 0),
-                          key="todo", border_width=2, background_color='light grey', do_not_clear=True)
+                          key="todo", border_width=2, background_color='light grey',
+                          do_not_clear=True)
 
 # The below add button utilises an image instead of text.
 """add_button = Gui.Button(image_source="images/WhiteAdd.png",
